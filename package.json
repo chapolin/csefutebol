@@ -1,8 +1,9 @@
 {
-  "name": "express-template-demo",
+  "name": "csefutebol",
   "version": "0.0.1-1",
   "private": true,
   "scripts": {
+    "test": "npm install",
     "start": "node app.js"
   },
   "dependencies": {
@@ -15,7 +16,6 @@
     "less-middleware": "*",
     "swig": "~0.12.1"
   },
-  "subdomain": "utuxia.demo",
   "engines": {
     "node": "0.8.x"
   }
