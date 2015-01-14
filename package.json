@@ -11,8 +11,5 @@
     "ejs-locals": "*",
     "less-middleware": "*",
     "swig": "~0.12.1"
-  },
-  "engines": {
-    "node": "0.8.x"
   }
 }
