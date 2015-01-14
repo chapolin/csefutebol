@@ -2,10 +2,6 @@
   "name": "csefutebol",
   "version": "0.0.1-1",
   "private": true,
-  "scripts": {
-    "test": "npm install",
-    "start": "node app.js"
-  },
   "dependencies": {
     "express": "3.x",
     "dustjs-linkedin": "*",
