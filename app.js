@@ -16,6 +16,8 @@ var express = require('express'),
 
 bugsnag.register("5eddbe2bce8a28e3ed81b7f5e0063178");
 
+bugsnag.notify(new Error("Non-fatal"));
+
 var app = express();
 
 if (template_engine == 'dust') {
