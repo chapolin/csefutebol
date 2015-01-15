@@ -10,7 +10,8 @@
     "ejs": "*",
     "ejs-locals": "*",
     "less-middleware": "*",
-    "swig": "~0.12.1"
+    "swig": "~0.12.1",
+    "bugsnag": "*"
   },
   "engines": {
     "node": "0.10.x"

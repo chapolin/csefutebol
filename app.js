@@ -11,7 +11,10 @@ var express = require('express'),
     routes = require('./routes'),
     http = require('http'),
     store = new express.session.MemoryStore,
-    path = require('path');
+    path = require('path'),
+    bugsnag = require("bugsnag");
+
+bugsnag.register("5eddbe2bce8a28e3ed81b7f5e0063178");
 
 var app = express();
 
