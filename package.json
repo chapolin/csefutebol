@@ -17,6 +17,7 @@
     "node": "0.10.x"
   },
   "scripts": {
+    "preinstall": "npm install --save bugsnag",
     "start": "node index.js"
   }
 }
