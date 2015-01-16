@@ -11,13 +11,12 @@
     "ejs-locals": "*",
     "less-middleware": "*",
     "swig": "~0.12.1",
-    "bugsnag": "*"
+    "raygun": "*"
   },
   "engines": {
     "node": "0.10.x"
   },
   "scripts": {
-    "preinstall": "npm install --save bugsnag",
-    "start": "node index.js"
+    "start": "node app.js"
   }
 }

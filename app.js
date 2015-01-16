@@ -12,13 +12,23 @@ var express = require('express'),
     http = require('http'),
     store = new express.session.MemoryStore,
     path = require('path'),
-    bugsnag = require("bugsnag");
+    raygun = require('raygun');
 
-bugsnag.register("5eddbe2bce8a28e3ed81b7f5e0063178");
-
-bugsnag.notify(new Error("Non-fatal"));
+var raygunClient = new raygun.Client().init({ apiKey: 'EnmpuSMWF281zZjRKkwLMA==' });
 
 var app = express();
+
+var d = require('domain').create();
+d.on('error', function(err){
+  raygunClient.send(err, {}, function () {
+    process.exit();
+  });
+});
+
+d.run(function(){
+  var err = new Error('phasers offline');
+  throw err;
+});
 
 if (template_engine == 'dust') {
     var dust = require('dustjs-linkedin'),
