@@ -1,17 +1,10 @@
 {
-  "name": "csefutebol",
+  "name": "csefutsal",
   "version": "0.0.1-1",
   "private": true,
   "dependencies": {
     "express": "3.x",
-    "dustjs-linkedin": "*",
-    "dustjs-helpers": "*",
-    "consolidate": "*",
-    "ejs": "*",
-    "ejs-locals": "*",
-    "less-middleware": "*",
-    "swig": "~0.12.1",
-    "raygun": "*"
+    "ejs": "*"
   },
   "engines": {
     "node": "0.10.x"

@@ -1,40 +1,26 @@
-var raygun = require('raygun');
-var raygunClient = new raygun.Client().init({ apiKey: 'EnmpuSMWF281zZjRKkwLMA==' });
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 3000;
 
-var d = require('domain').create();
-d.on('error', function(err){
-  raygunClient.send(err, {}, function () {
-    process.exit();
-  });
-});
+app.set('view engine', 'ejs');
 
-d.run(function(){
-  var err = new Error('phasers offline');
-  throw err;
-});
-
-var express = require('express')
-var app = express()
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+	res.render('index');
+});
 
-var server = app.listen(8080, function () {
+app.get('/historia', function (req, res) {
+	res.render('history');
+});
 
-  var host = server.address().address
-  var port = server.address().port
+app.get('/time', function (req, res) {
+	res.render('team');
+});
 
-  console.log('Example app listening at http://%s:%s', host, port)
+var server = app.listen(port, function() {
+	var host = server.address().address;
+	var port = server.address().port;
 
-})
-
-/*var http = require('http');
-
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello Node.JS!');
-}).listen(8080);
-
-console.log('Server running at http://localhost:8080/');
-*/
+	console.log('Example app listening at http://%s:%s', host, port);
+});

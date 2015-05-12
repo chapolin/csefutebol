@@ -1,0 +1,96 @@
+body{
+  margin: 0;
+}
+.header, .menu, .body, .footer {
+  width: 100%;
+}
+.content-width {
+  max-width: 1200px;
+  min-width: 980px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header {
+	height:259px;
+	background-color: #000;
+}
+
+.header .content-width{
+	height: 259px;
+	background-image: url("/images/cse-topo.jpg");
+	background-repeat: no-repeat;
+	background-color: #000;
+}
+
+.menu {
+	height: 40px;
+	background-color: #000;
+}
+
+.body{
+	margin-top: 20px;
+}
+
+.body .content-width {
+  height: auto;
+}
+
+.footer {
+	background:rgb(253, 104, 1);
+	text-align:center;
+	line-height: 50px
+}
+.footer .content-width {
+  height: 50px;
+}
+
+.logo{
+	float:left;
+	margin:20px
+}
+
+.col-left{
+	text-align: right;
+	padding-right: 0!important;
+}
+
+.col-right{
+	padding-left: 5px!important;
+}
+
+.time-azul{color:rgb(100, 244, 255)}
+.time-laranja{color:rgb(253, 104, 1)}
+
+.team .row{height:25px}
+
+.team hr{
+	background-color:#000;
+	height:2px;
+	width:90%
+}
+
+.menu ul{
+	list-style: none;
+	margin:5px 0 0 0
+}
+
+.menu ul li {
+	float: left;
+	width: 14%;
+	height: 40px;
+	line-height: 40px;
+	background-color: #000;
+	border-right: 5px solid #FFF;
+  	text-align:center
+}
+
+.menu ul li a{
+	color: #FFF;
+	font-weight:bold;
+	text-decoration:none
+}
+
+.menu ul li.last{
+	border-right: 0;
+}
