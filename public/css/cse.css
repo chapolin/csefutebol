@@ -1,50 +1,108 @@
+html, body {
+  height: 100%;
+}
+
 body{
   margin: 0;
 }
-.header, .menu, .body, .footer {
+
+.wrapper {
+  position: relative;
+  min-height: 100%;
+}
+
+.header, .menu, .main-content, .footer {
+  float: left;
   width: 100%;
 }
+
 .content-width {
-  max-width: 1200px;
-  min-width: 980px;
+  max-width: 1080px;
+  min-width: 320px;
   width: 100%;
   margin: 0 auto;
 }
 
+
+/* HEADER ======================================== */
 .header {
 	height:259px;
 	background-color: #000;
 }
 
-.header .content-width{
+.header .content-width {
 	height: 259px;
 	background-image: url("/images/cse-topo.jpg");
 	background-repeat: no-repeat;
 	background-color: #000;
 }
 
+
+/* MENU ======================================== */
 .menu {
-	height: 40px;
 	background-color: #000;
+  border-top: 4px solid #FFF;
 }
 
-.body{
+.header .content-width {
+  text-align: center;
+}
+
+.menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu-item {
+  float: left;
+  border-right: 4px solid #FFF;
+}
+
+.menu-item.last{
+  border-right: 0;
+}
+
+.menu-item a {
+  display: inline-block;
+  padding: 10px 60px;
+  color: #FFF;
+  font-weight:bold;
+  text-decoration:none
+}
+
+.menu-item.active a {
+  background: rgb(253, 104, 1)
+}
+
+
+/* MAIN CONTENT ===================================== */
+.main-content{
 	margin-top: 20px;
+  margin-bottom: 50px;
 }
 
-.body .content-width {
+.main-content .content-width {
   height: auto;
 }
 
+
+/* FOOTER ============================================ */
 .footer {
-	background:rgb(253, 104, 1);
-	text-align:center;
-	line-height: 50px
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background:rgb(253, 104, 1);
+  text-align:center;
+  line-height: 50px
 }
+
 .footer .content-width {
   height: 50px;
 }
 
+
+/* OTHER CONFIGS ===================================== */
 .logo{
 	float:left;
 	margin:20px
@@ -68,29 +126,4 @@ body{
 	background-color:#000;
 	height:2px;
 	width:90%
-}
-
-.menu ul{
-	list-style: none;
-	margin:5px 0 0 0
-}
-
-.menu ul li {
-	float: left;
-	width: 14%;
-	height: 40px;
-	line-height: 40px;
-	background-color: #000;
-	border-right: 5px solid #FFF;
-  	text-align:center
-}
-
-.menu ul li a{
-	color: #FFF;
-	font-weight:bold;
-	text-decoration:none
-}
-
-.menu ul li.last{
-	border-right: 0;
 }
