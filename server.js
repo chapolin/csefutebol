@@ -18,6 +18,10 @@ app.get('/time', function (req, res) {
 	res.render('team');
 });
 
+app.get('/elenco', function (req, res) {
+	res.render('staff');
+});
+
 app.get('/fotos', function (req, res) {
 	res.render('fotos');
 });

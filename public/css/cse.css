@@ -178,3 +178,19 @@ body{
 	height:2px;
 	width:90%
 }
+
+/* PHOTOS CONFIGS ===================================== */
+.fotos-elenco{
+	float:left;
+	width: 100%
+}
+
+.fotos-elenco .foto-item {
+	float: left;
+	margin-right: 10px
+}
+
+.fotos-elenco .legenda-foto {
+	font-weight: bold;
+	text-align: center
+}
