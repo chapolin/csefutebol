@@ -7,19 +7,19 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
-	res.render('index');
+	res.render('index', {section: "home"});
 });
 
 app.get('/historia', function (req, res) {
-	res.render('history');
+	res.render('history', {section: "history"});
 });
 
 app.get('/time', function (req, res) {
-	res.render('team');
+	res.render('team', {section: "team"});
 });
 
 app.get('/elenco', function (req, res) {
-	res.render('staff');
+	res.render('staff', {section: "staff"});
 });
 
 app.get('/fotos', function (req, res) {

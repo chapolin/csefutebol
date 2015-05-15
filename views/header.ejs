@@ -3,7 +3,6 @@
   <head>
     <title>C.S.E Futsal</title>
     <link href="/css/cse.css" rel="stylesheet" type="text/css" />
-    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
   </head>
 <body>
@@ -19,14 +18,37 @@
 
   <div class="menu">
     <div class="content-width">
-      <button class="menu-toggle">=</button>
+      <button class="menu-toggle">MENU</button>
       <ul class="menu-list">
-        <li class="menu-item">
-          <a href="/historia">História</a></li>
-        <li class="menu-item active">
-          <a href="/time">Time</a>
+<%if (section ==  "home") { %>
+		<li class="menu-item active">
+<% } else { %>
+		<li class="menu-item">
+<% } %>
+	          <a href="/">Home</a>
+		</li>
+		
+<%if (section ==  "history") { %>
+		<li class="menu-item active">
+<% } else { %>
+		<li class="menu-item">
+<% } %>
+          <a href="/historia">História</a>
+	    </li>
+	    
+<%if (section ==  "team") { %>
+		<li class="menu-item active">
+<% } else { %>
+		<li class="menu-item">
+<% } %>
+          <a href="/time">O Time</a>
         </li>
-        <li class="menu-item">
+        
+<%if (section ==  "staff") { %>
+		<li class="menu-item active">
+<% } else { %>
+		<li class="menu-item">
+<% } %>
           <a href="/elenco">Elenco</a>
         </li>
         <li class="menu-item">
