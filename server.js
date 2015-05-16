@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 
@@ -20,6 +20,18 @@ app.get('/time', function (req, res) {
 
 app.get('/elenco', function (req, res) {
 	res.render('staff', {section: "staff"});
+});
+
+app.get('/agenda', function (req, res) {
+	res.render('calendar', {section: "calendar"});
+});
+
+app.get('/estatisticas', function (req, res) {
+	res.render('statistics', {section: "statistics"});
+});
+
+app.get('/midias', function (req, res) {
+	res.render('medias', {section: "medias"});
 });
 
 app.get('/fotos', function (req, res) {

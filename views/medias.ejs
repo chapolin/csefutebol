@@ -1,0 +1,80 @@
+
+<%- include header.ejs %>
+<link rel="stylesheet" href="/css/blueimp-gallery.min.css">
+<div class="main-content">
+  <div class="content-width medias">
+  	<div class="fotos-videos">
+		<h1>FOTOS / VÍDEOS</h1>
+		
+		<h2 class="time-laranja">Fotos</h2>
+	
+		<!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+		<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+			<div class="slides"></div>
+			<h3 class="title"></h3>
+			<a class="prev">‹</a> <a class="next">›</a> <a class="close">×</a> <a
+				class="play-pause"></a>
+			<ol class="indicator"></ol>
+		</div>
+		
+		<div id="links">
+		    <a href="/images/fotos/IMG-20150512-WA0057.jpg" title="Galera do C.S.E">
+		        <img class="foto-principal" src="/images/fotos/IMG-20150512-WA0057.jpg" width="600" height="450" alt="Galera do C.S.E">
+		    </a>
+		    <a href="/images/fotos/IMG-20150512-WA0028.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0029.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0030.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0031.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0032.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0033.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0034.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0035.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0036.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0037.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0038.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0039.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0040.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0041.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0042.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0044.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0043.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0045.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0046.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0047.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0048.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0049.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0050.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0051.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0052.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0053.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0054.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0055.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0056.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0057.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0058.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0059.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0060.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0061.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0062.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0063.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0064.jpg" title=""></a>
+		    <a href="/images/fotos/IMG-20150512-WA0065.jpg" title=""></a>
+		</div>
+		
+		<script src="/js/blueimp-gallery.min.js"></script>
+		
+		<script>
+		document.getElementById('links').onclick = function (event) {
+		    event = event || window.event;
+		    var target = event.target || event.srcElement,
+		        link = target.src ? target.parentNode : target,
+		        options = {index: link, event: event},
+		        links = this.getElementsByTagName('a');
+		    blueimp.Gallery(links, options);
+		};
+		</script>
+	</div>
+  </div>
+</div>
+
+<%- include footer.ejs %>
