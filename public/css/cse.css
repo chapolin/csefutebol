@@ -358,6 +358,21 @@ body{
 	width: 20px;
 }
 
+.statistics .ultimos-jogos{
+	padding: 10px;
+	width: 100%;
+	text-align: center;
+	margin: 0 20px 20px 0;
+	float: left;
+}
+
+.statistics .ultimos-jogos h2{
+	height: 40px;
+	padding: 0;
+	line-height: 30px;
+	margin: 0px;
+}
+
 /* MEDIAS CONFIGS ===================================== */
 .medias .fotos-videos{
 	padding: 0 5px 0 5px;
@@ -425,7 +440,7 @@ body{
 }
 
 /* HOME ULTIMOS-JOGOS ===================================== */
-.ultimos-jogos{
+.destaques .ultimos-jogos{
 	padding: 10px;
 	background: rgba(204, 204, 204, 0.24);
 	width: 440px;
@@ -434,7 +449,7 @@ body{
 	float: left;
 }
 
-.ultimos-jogos h2{
+.destaques .ultimos-jogos h2{
 	background: url(/images/bola-futebol.png) no-repeat 100px 0px;
 	height: 40px;
 	padding: 0;
