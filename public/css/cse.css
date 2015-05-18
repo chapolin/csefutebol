@@ -166,7 +166,7 @@ body{
   }
   
   .destaques .ultimas-noticias, .destaques .proximos-jogos, .destaques .ultimos-jogos, .destaques .facebook {
-  	  width: 360px;
+  	  width: 360px!important;
   	  margin: 0 0 20px 0;
   }
   
@@ -183,7 +183,7 @@ body{
   }
   
   .destaques .ultimos-jogos h2 {
-  	background: url(/images/bola-futebol.png) no-repeat 66px 0px;
+  	background: url(/images/bola-futebol.png) no-repeat 66px 0px!important;
   }
 }
 
@@ -359,7 +359,6 @@ body{
 }
 
 .statistics .ultimos-jogos{
-	padding: 10px;
 	width: 100%;
 	text-align: center;
 	margin: 0 20px 20px 0;
