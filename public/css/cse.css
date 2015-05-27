@@ -42,6 +42,10 @@ body{
 	font-size: 20px;
 }
 
+.riscado{
+	text-decoration: line-through
+}
+
 /* HEADER ======================================== */
 .header {
 	height:259px;

@@ -22,6 +22,20 @@ var ultimosJogos = function(limit, target) {
 
 var jogos = [
 	{
+		data: "24.05.15",
+		time1: "Muleke",
+		placar1: 8,
+		time2: "C.S.E (B)",
+		placar2: 7
+	},
+	{
+		data: "24.05.15",
+		time1: "Muleke",
+		placar1: 8,
+		time2: "C.S.E (A)",
+		placar2: 6
+	},
+	{
 		data: "17.05.15",
 		time1: "G 3",
 		placar1: 10,
