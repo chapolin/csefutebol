@@ -22,15 +22,29 @@ var ultimosJogos = function(limit, target) {
 
 var jogos = [
 	{
+		data: "30.05.15",
+		time1: "Real Estrela",
+		placar1: 9,
+		time2: "C.S.E (B)",
+		placar2: 4
+	},
+	{
+		data: "30.05.15",
+		time1: "Real Estrela",
+		placar1: 7,
+		time2: "C.S.E (A)",
+		placar2: 14
+	}
+	{
 		data: "24.05.15",
-		time1: "Muleke",
+		time1: "Só Mulekes",
 		placar1: 8,
 		time2: "C.S.E (B)",
 		placar2: 7
 	},
 	{
 		data: "24.05.15",
-		time1: "Muleke",
+		time1: "Só Mulekes",
 		placar1: 8,
 		time2: "C.S.E (A)",
 		placar2: 6
@@ -38,7 +52,7 @@ var jogos = [
 	{
 		data: "17.05.15",
 		time1: "G 3",
-		placar1: 10,
+		placar1: 11,
 		time2: "C.S.E (B)",
 		placar2: 4
 	},
@@ -61,7 +75,7 @@ var jogos = [
     	time1: "Real Maloka",
     	placar1: 10,
     	time2: "C.S.E (A)",
-    	placar2: 6
+    	placar2: 5
     },
     {
     	data: "10.05.15",
