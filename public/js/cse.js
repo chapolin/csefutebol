@@ -34,7 +34,7 @@ var jogos = [
 		placar1: 7,
 		time2: "C.S.E (A)",
 		placar2: 14
-	}
+	},
 	{
 		data: "24.05.15",
 		time1: "Só Mulekes",
