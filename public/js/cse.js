@@ -20,6 +20,25 @@ var ultimosJogos = function(limit, target) {
 	$(target).after(htmlUltimosJogos);
 };
 
+var montaArtilharia = function(target, quadro) {
+	var htmlArtilheiros = "", count = 1;
+	
+	artilheiros.sort(ordenaArtilharia);
+	
+	for(var i in artilheiros) {
+		if(artilheiros[i].quadro == quadro) {
+			htmlArtilheiros+= '<div class="row artilharia-item-quadro-' + quadro + '">';
+			htmlArtilheiros+= '	<span class="col-left-min">#' + count + '</span>'; 
+			htmlArtilheiros+= '	<span class="col-left nome-jogador">' + artilheiros[i].nome + '</span><span class="col-right qtd-gols">' + artilheiros[i].gols + ' gol(s)</span>'; 
+			htmlArtilheiros+= '</div>';
+			
+			count++;
+		}
+	}
+	
+	$(target).after(htmlArtilheiros);
+};
+
 var jogos = [
 	{
 		data: "30.05.15",
@@ -268,9 +287,117 @@ var jogos = [
     }
 ]; 
 
+var artilheiros = [
+    {
+    	nome: "Nenen",
+    	gols: 30,
+    	quadro: 1
+    },
+    {
+    	nome: "Paulo",
+    	gols: 29,
+    	quadro: 2
+    },
+    {
+    	nome: "Ítalo",
+    	gols: 26,
+    	quadro: 1
+    },
+    {
+    	nome: "Samuray",
+    	gols: 15,
+    	quadro: 1
+    },
+    {
+    	nome: "Bruninho",
+    	gols: 14,
+    	quadro: 2
+    },
+    {
+    	nome: "Ney",
+    	gols: 13,
+    	quadro: 1
+    },
+    {
+    	nome: "Tuí",
+    	gols: 12,
+    	quadro: 1
+    },
+    {
+    	nome: "Alan",
+    	gols: 16,
+    	quadro: 1
+    },
+    {
+    	nome: "Caique",
+    	gols: 12,
+    	quadro: 2
+    },
+    {
+    	nome: "Felipe",
+    	gols: 11,
+    	quadro: 2
+    },
+    {
+    	nome: "Alemão",
+    	gols: 10,
+    	quadro: 1
+    },
+    {
+    	nome: "Digo",
+    	gols: 8,
+    	quadro: 2
+    },
+    {
+    	nome: "Josuel",
+    	gols: 7,
+    	quadro: 2
+    },
+    {
+    	nome: "Cláudio",
+    	gols: 5,
+    	quadro: 1
+    },
+    {
+    	nome: "Índio",
+    	gols: 5,
+    	quadro: 1
+    },
+    {
+    	nome: "Marcelo",
+    	gols: 4,
+    	quadro: 2
+    },
+    {
+    	nome: "Danilo",
+    	gols: 4,
+    	quadro: 2
+    },
+    {
+    	nome: "Leandro",
+    	gols: 2,
+    	quadro: 2
+    },
+    {
+    	nome: "Rafael",
+    	gols: 2,
+    	quadro: 2
+    }
+];
+
+var ordenaArtilharia = function(a, b) {
+	return b.gols - a.gols;
+}
+
 $(document).ready(function(){
 	ultimosJogos(6, ".destaques .ultimos-jogos h2");
 	ultimosJogos(100, ".estatisticas .ultimos-jogos h2");
+	
+	montaArtilharia(".estatisticas .artilheiros-quadro-1", 1);
+	montaArtilharia(".estatisticas .artilheiros-quadro-2", 2);
+	
+	$(".artilharia-item-quadro-1:last").addClass("last");
+	$(".artilharia-item-quadro-2:last").addClass("last");
 	
 	menuEvents();
 });
