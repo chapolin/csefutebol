@@ -290,17 +290,17 @@ var jogos = [
 var artilheiros = [
     {
     	nome: "Nenen",
-    	gols: 30,
+    	gols: 34,
     	quadro: 1
     },
     {
     	nome: "Paulo",
-    	gols: 29,
+    	gols: 30,
     	quadro: 2
     },
     {
     	nome: "Ítalo",
-    	gols: 26,
+    	gols: 29,
     	quadro: 1
     },
     {
@@ -310,7 +310,7 @@ var artilheiros = [
     },
     {
     	nome: "Bruninho",
-    	gols: 14,
+    	gols: 17,
     	quadro: 2
     },
     {
@@ -325,7 +325,7 @@ var artilheiros = [
     },
     {
     	nome: "Alan",
-    	gols: 16,
+    	gols: 17,
     	quadro: 1
     },
     {
@@ -345,7 +345,7 @@ var artilheiros = [
     },
     {
     	nome: "Digo",
-    	gols: 8,
+    	gols: 9,
     	quadro: 2
     },
     {
@@ -380,7 +380,17 @@ var artilheiros = [
     },
     {
     	nome: "Rafael",
-    	gols: 2,
+    	gols: 3,
+    	quadro: 2
+    },
+    {
+    	nome: "Alcymar",
+    	gols: 0,
+    	quadro: 1
+    },
+    {
+    	nome: "Luciano",
+    	gols: 0,
     	quadro: 2
     }
 ];
