@@ -6,40 +6,82 @@ function menuEvents() {
 
 var ultimosJogos = function(limit, target) {
 	var htmlUltimosJogos = "", count = 1, limit = !limit ? 6 : limit;
-	
+
 	for(var i in jogos) {
 		htmlUltimosJogos+= '<div class="item-jogo' + (count == 1 ? ' primeira-linha' : '') + '">';
-		htmlUltimosJogos+= 	'<i class="data-jogo">' + jogos[i].data +  '</i> - <span class="nome-time">' + jogos[i].time1 +  '</span><span class="placar-jogo">' + jogos[i].placar1 +  '</span> x <span class="placar-jogo">' + jogos[i].placar2 +  '</span><span class="nome-time">' + jogos[i].time2 +  '</span>'; 
+		htmlUltimosJogos+= 	'<i class="data-jogo">' + jogos[i].data +  '</i> - <span class="nome-time">' + jogos[i].time1 +  '</span><span class="placar-jogo">' + jogos[i].placar1 +  '</span> x <span class="placar-jogo">' + jogos[i].placar2 +  '</span><span class="nome-time">' + jogos[i].time2 +  '</span>';
 		htmlUltimosJogos+= '</div>';
-		
+
 		if(count == limit) break;
-		
+
 		count++;
 	}
-	
+
 	$(target).after(htmlUltimosJogos);
 };
 
 var montaArtilharia = function(target, quadro) {
 	var htmlArtilheiros = "", count = 1;
-	
+
 	artilheiros.sort(ordenaArtilharia);
-	
+
 	for(var i in artilheiros) {
 		if(artilheiros[i].quadro == quadro) {
 			htmlArtilheiros+= '<div class="row artilharia-item-quadro-' + quadro + '">';
-			htmlArtilheiros+= '	<span class="col-left-min">#' + count + '</span>'; 
-			htmlArtilheiros+= '	<span class="col-left nome-jogador">' + artilheiros[i].nome + '</span><span class="col-right qtd-gols">' + artilheiros[i].gols + ' gol(s)</span>'; 
+			htmlArtilheiros+= '	<span class="col-left-min">#' + count + '</span>';
+			htmlArtilheiros+= '	<span class="col-left nome-jogador">' + artilheiros[i].nome + '</span><span class="col-right qtd-gols">' + artilheiros[i].gols + ' gol(s)</span>';
 			htmlArtilheiros+= '</div>';
-			
+
 			count++;
 		}
 	}
-	
+
 	$(target).after(htmlArtilheiros);
 };
 
 var jogos = [
+  {
+		data: "14.06.15",
+		time1: "C.S.E (B)",
+		placar1: 5,
+		time2: "The Brothers",
+		placar2: 7
+	},
+  {
+		data: "14.06.15",
+		time1: "C.S.E (A)",
+		placar1: 8,
+		time2: "The Brothers",
+		placar2: 9
+	},
+  {
+		data: "07.06.15",
+		time1: "C.S.E (B)",
+		placar1: 5,
+		time2: "Real Madrid",
+		placar2: 10
+	},
+  {
+		data: "07.06.15",
+		time1: "C.S.E (A)",
+		placar1: 6,
+		time2: "Real Madrid",
+		placar2: 7
+	},
+  {
+		data: "06.06.15",
+		time1: "C.S.E (A)",
+		placar1: 0,
+		time2: "Só Mulekes",
+		placar2: 6
+	},
+  {
+		data: "06.06.15",
+		time1: "C.S.E (B)",
+		placar1: 3,
+		time2: "Império F.S",
+		placar2: 6
+	},
 	{
 		data: "30.05.15",
 		time1: "Real Estrela",
@@ -285,32 +327,32 @@ var jogos = [
     	time2: "Real Estrela",
     	placar2: 5
     }
-]; 
+];
 
 var artilheiros = [
     {
     	nome: "Nenen",
-    	gols: 34,
+    	gols: 35,
     	quadro: 1
     },
     {
     	nome: "Paulo",
-    	gols: 30,
+    	gols: 31,
     	quadro: 2
     },
     {
     	nome: "Ítalo",
-    	gols: 29,
+    	gols: 32,
     	quadro: 1
     },
     {
     	nome: "Samuray",
-    	gols: 15,
+    	gols: 17,
     	quadro: 1
     },
     {
     	nome: "Bruninho",
-    	gols: 17,
+    	gols: 18,
     	quadro: 2
     },
     {
@@ -320,7 +362,7 @@ var artilheiros = [
     },
     {
     	nome: "Tuí",
-    	gols: 12,
+    	gols: 13,
     	quadro: 1
     },
     {
@@ -360,12 +402,12 @@ var artilheiros = [
     },
     {
     	nome: "Índio",
-    	gols: 5,
+    	gols: 6,
     	quadro: 1
     },
     {
     	nome: "Marcelo",
-    	gols: 4,
+    	gols: 5,
     	quadro: 2
     },
     {
@@ -374,7 +416,7 @@ var artilheiros = [
     	quadro: 2
     },
     {
-    	nome: "Leandro",
+    	nome: "Leandrão",
     	gols: 2,
     	quadro: 2
     },
@@ -392,6 +434,16 @@ var artilheiros = [
     	nome: "Luciano",
     	gols: 0,
     	quadro: 2
+    },
+    {
+    	nome: "Danilo Nil",
+    	gols: 0,
+    	quadro: 2
+    },
+    {
+    	nome: "Leandro",
+    	gols: 0,
+    	quadro: 1
     }
 ];
 
@@ -402,12 +454,12 @@ var ordenaArtilharia = function(a, b) {
 $(document).ready(function(){
 	ultimosJogos(6, ".destaques .ultimos-jogos h2");
 	ultimosJogos(100, ".estatisticas .ultimos-jogos h2");
-	
+
 	montaArtilharia(".estatisticas .artilheiros-quadro-1", 1);
 	montaArtilharia(".estatisticas .artilheiros-quadro-2", 2);
-	
+
 	$(".artilharia-item-quadro-1:last").addClass("last");
 	$(".artilharia-item-quadro-2:last").addClass("last");
-	
+
 	menuEvents();
 });
