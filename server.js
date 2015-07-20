@@ -96,7 +96,7 @@ app.post('/news/:id', function(request, response) {
 		news.text = request.body.text;
 		news.author = request.body.author;
 
-		collection.update({ _id : news._id }, { $set: news }, function( err, result ) {
+		collection.update({ _id : ObjectId(news._id) }, { $set: news }, function( err, result ) {
 		        if(!err) {
 							console.log("News Updated!", result.ops);
 
