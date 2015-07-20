@@ -2,7 +2,9 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
 var mongo = null;
-var MongoClient = require('mongodb').MongoClient;
+var mongodb = require('mongodb');
+var ObjectId = mongodb.ObjectID;
+var MongoClient = mongodb.MongoClient;
 var methodOverride = require('method-override');
 
 // Connect to the DB
