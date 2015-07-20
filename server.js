@@ -59,8 +59,8 @@ app.get('/fotos', function (req, res) {
 
 // Crud news insert: start
 app.post('/news', function(request, response) {
-	if(request.body.hasOwnProperty("title") ||
-			request.body.hasOwnProperty("text") ||
+	if(request.body.hasOwnProperty("title") &&
+			request.body.hasOwnProperty("text") &&
 			request.body.hasOwnProperty("author")) {
 
 		var collection = mongo.collection('news'), news = {};
@@ -84,9 +84,9 @@ app.post('/news', function(request, response) {
 // Crud news insert: end
 
 // Crud news update: start
-app.post('/news:id', function(request, response) {
-	if(request.body.hasOwnProperty("title") ||
-			request.body.hasOwnProperty("text") ||
+app.post('/news/:id', function(request, response) {
+	if(request.body.hasOwnProperty("title") &&
+			request.body.hasOwnProperty("text") &&
 			request.body.hasOwnProperty("author")) {
 
 		var collection = mongo.collection('news'), news = {};
