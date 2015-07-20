@@ -1,7 +1,26 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
+var mongo = null;
+var MongoClient = require('mongodb').MongoClient;
+var methodOverride = require('method-override');
 
+// Connect to the DB
+MongoClient.connect(
+		"mongodb://cse:csesenha@ds053448.mongolab.com:53448/heroku_xwm5hgrr",
+		function(err, db) {
+	mongo = db;
+
+console.log(mongo);
+  if(!err) {
+    console.log("We are connected in mongodb :)");
+  } else {
+	console.log(err);
+}
+});
+
+app.use(express.bodyParser());
+app.use(methodOverride('X-HTTP-Method-Override'));
 app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
@@ -38,9 +57,54 @@ app.get('/fotos', function (req, res) {
 	res.render('fotos');
 });
 
+// Crud news insert: start
+app.post('/news', function(request, response) {
+	if(request.body.hasOwnProperty("title") ||
+			request.body.hasOwnProperty("text") ||
+			request.body.hasOwnProperty("author")) {
+
+		var collection = mongo.collection('news'), news = {};
+
+		news.title = request.body.title;
+		news.text = request.body.text;
+		news.author = request.body.author;
+
+		collection.insert(news, {w:1},
+			function(err, result) {
+				if(!err) {
+					console.log("News Inserted!", result.ops);
+				}
+		});
+	}
+});
+// Crud news insert: end
+
+// Crud news update: start
+app.post('/news:id', function(request, response) {
+	if(request.body.hasOwnProperty("title") ||
+			request.body.hasOwnProperty("text") ||
+			request.body.hasOwnProperty("author")) {
+
+		var collection = mongo.collection('news'), news = {};
+
+		news._id = request.params.id;
+		news.title = request.body.title;
+		news.text = request.body.text;
+		news.author = request.body.author;
+
+		collection.update({ _id : news._id }, { $set: news }, function( err, result ) {
+		        if(!err) {
+							console.log("News Updated!", result.ops);
+						}
+		    }
+		);
+	}
+});
+// Crud news update: end
+
 var server = app.listen(port, function() {
 	var host = server.address().address;
 	var port = server.address().port;
 
-	console.log('Example app listening at http://%s:%s', host, port);
+	console.log('Server up at http://%s:%s', host, port);
 });

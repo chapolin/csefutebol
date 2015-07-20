@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "express": "3.2.6",
-    "ejs": "*"
+    "ejs": "*",
+    "mongodb": "*",
+    "method-override": "*"
   },
   "engines": {
     "node": "0.10.x"
