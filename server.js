@@ -73,7 +73,11 @@ app.post('/news', function(request, response) {
 			function(err, result) {
 				if(!err) {
 					console.log("News Inserted!", result.ops);
+
+					response.json(result);
 				}
+
+				response.end();
 		});
 	}
 });
@@ -95,7 +99,11 @@ app.post('/news:id', function(request, response) {
 		collection.update({ _id : news._id }, { $set: news }, function( err, result ) {
 		        if(!err) {
 							console.log("News Updated!", result.ops);
+
+							response.json(result);
 						}
+
+						response.end();
 		    }
 		);
 	}
