@@ -1,45 +1,154 @@
-function menuEvents() {
-  $(".menu-toggle").on("click", function() {
-    $(".menu-list").toggle();
-  });
-}
-
-var ultimosJogos = function(limit, target) {
-	var htmlUltimosJogos = "", count = 1, limit = !limit ? 6 : limit;
-
-	for(var i in jogos) {
-		htmlUltimosJogos+= '<div class="item-jogo' + (count == 1 ? ' primeira-linha' : '') + '">';
-		htmlUltimosJogos+= 	'<i class="data-jogo">' + jogos[i].data +  '</i> - <span class="nome-time">' + jogos[i].time1 +  '</span><span class="placar-jogo">' + jogos[i].placar1 +  '</span> x <span class="placar-jogo">' + jogos[i].placar2 +  '</span><span class="nome-time">' + jogos[i].time2 +  '</span>';
-		htmlUltimosJogos+= '</div>';
-
-		if(count == limit) break;
-
-		count++;
-	}
-
-	$(target).after(htmlUltimosJogos);
-};
-
-var montaArtilharia = function(target, quadro) {
-	var htmlArtilheiros = "", count = 1;
-
-	artilheiros.sort(ordenaArtilharia);
-
-	for(var i in artilheiros) {
-		if(artilheiros[i].quadro == quadro) {
-			htmlArtilheiros+= '<div class="row artilharia-item-quadro-' + quadro + '">';
-			htmlArtilheiros+= '	<span class="col-left-min">#' + count + '</span>';
-			htmlArtilheiros+= '	<span class="col-left nome-jogador">' + artilheiros[i].nome + '</span><span class="col-right qtd-gols">' + artilheiros[i].gols + ' gol(s)</span>';
-			htmlArtilheiros+= '</div>';
-
-			count++;
-		}
-	}
-
-	$(target).after(htmlArtilheiros);
-};
-
 var jogos = [
+  {
+    data: "23.08.15",
+    diaDaSemana: "Domingo",
+    time1: "C.S.E (B)",
+    placar1: null,
+    time2: "Vem Que Tem",
+    placar2: null,
+    horario: "10h",
+    tipo: "Amistoso em Casa",
+    onde: "Flamenguinho"
+  },
+  {
+    data: "23.08.15",
+    diaDaSemana: "Domingo",
+    time1: "C.S.E (A)",
+    placar1: null,
+    time2: "Vem Que Tem",
+    placar2: null,
+    horario: "11h",
+    tipo: "Amistoso em Casa",
+    onde: "Flamenguinho"
+  },
+  {
+    data: "16.08.15",
+    diaDaSemana: "Domingo",
+    time1: "C.S.E (B)",
+    placar1: null,
+    time2: "CRAP Futsal",
+    placar2: null,
+    horario: "8h",
+    tipo: "Amistoso Fora",
+    onde: "Laranjeiras"
+  },
+  {
+    data: "16.08.15",
+    diaDaSemana: "Domingo",
+    time1: "C.S.E (A)",
+    placar1: null,
+    time2: "CRAP Futsal",
+    placar2: null,
+    horario: "9h",
+    tipo: "Amistoso Fora",
+    onde: "Laranjeiras"
+  },
+  {
+    data: "09.08.15",
+    diaDaSemana: "Domingo",
+    time1: "C.S.E (B)",
+    placar1: null,
+    time2: "Caras Futsal",
+    placar2: null,
+    horario: "10h",
+    tipo: "Amistoso em Casa",
+    onde: "Flamenguinho"
+  },
+  {
+    data: "09.08.15",
+    diaDaSemana: "Domingo",
+    time1: "C.S.E (A)",
+    placar1: null,
+    time2: "Caras Futsal",
+    placar2: null,
+    horario: "11h",
+    tipo: "Amistoso em Casa",
+    onde: "Flamenguinho"
+  },
+  {
+    data: "02.08.15",
+    time1: "C.S.E (B)",
+    placar1: 4,
+    time2: "Independente Futsal",
+    placar2: 4
+  },
+  {
+    data: "02.08.15",
+    time1: "C.S.E (A)",
+    placar1: 17,
+    time2: "Independente Futsal",
+    placar2: 2
+  },
+  {
+    data: "01.08.15",
+    time1: "C.S.E (B)",
+    placar1: 5,
+    time2: "Sonics Futsal",
+    placar2: 2
+  },
+  {
+    data: "01.08.15",
+    time1: "C.S.E (A)",
+    placar1: 7,
+    time2: "Sonics Futsal",
+    placar2: 7
+  },
+  {
+    data: "28.07.15",
+    time1: "C.S.E (B)",
+    placar1:3,
+    time2: "Juventude",
+    placar2: 9
+  },
+  {
+    data: "28.07.15",
+    time1: "C.S.E (A)",
+    placar1: 7,
+    time2: "Juventude",
+    placar2: 9
+  },
+  {
+    data: "12.07.15",
+    time1: "C.S.E (B)",
+    placar1: 12,
+    time2: "Sentinela Futsal",
+    placar2: 5
+  },
+  {
+    data: "12.07.15",
+    time1: "C.S.E (A)",
+    placar1: 16,
+    time2: "Sentinela Futsal",
+    placar2: 4
+  },
+  {
+    data: "04.07.15",
+    time1: "C.S.E (B)",
+    placar1: 6,
+    time2: "Os Abusados",
+    placar2: 7
+  },
+  {
+    data: "04.07.15",
+    time1: "C.S.E (A)",
+    placar1: 4,
+    time2: "Os Abusados",
+    placar2: 6
+  },
+  {
+    data: "28.06.15",
+    time1: "C.S.E (B)",
+    placar1: 4,
+    time2: "G 3",
+    placar2: 5
+  },
+  {
+    data: "28.06.15",
+    time1: "C.S.E (A)",
+    placar1: 6,
+    time2: "G 3",
+    placar2: 7
+  },
   {
 		data: "14.06.15",
 		time1: "C.S.E (B)",
@@ -328,138 +437,3 @@ var jogos = [
     	placar2: 5
     }
 ];
-
-var artilheiros = [
-    {
-    	nome: "Nenen",
-    	gols: 40,
-    	quadro: 1
-    },
-    {
-    	nome: "Paulo",
-    	gols: 34,
-    	quadro: 2
-    },
-    {
-    	nome: "Ítalo",
-    	gols: 39,
-    	quadro: 1
-    },
-    {
-    	nome: "Samuray",
-    	gols: 17,
-    	quadro: 1
-    },
-    {
-    	nome: "Bruninho",
-    	gols: 25,
-    	quadro: 2
-    },
-    {
-    	nome: "Ney",
-    	gols: 13,
-    	quadro: 1
-    },
-    {
-    	nome: "Tuí",
-    	gols: 16,
-    	quadro: 1
-    },
-    {
-    	nome: "Alan",
-    	gols: 22,
-    	quadro: 1
-    },
-    {
-    	nome: "Caique",
-    	gols: 15,
-    	quadro: 2
-    },
-    {
-    	nome: "Felipe",
-    	gols: 14,
-    	quadro: 2
-    },
-    {
-    	nome: "Alemão",
-    	gols: 10,
-    	quadro: 1
-    },
-    {
-    	nome: "Digo",
-    	gols: 11,
-    	quadro: 2
-    },
-    {
-    	nome: "Josuel",
-    	gols: 9,
-    	quadro: 2
-    },
-    {
-    	nome: "Cláudio",
-    	gols: 9,
-    	quadro: 1
-    },
-    {
-    	nome: "Índio",
-    	gols: 6,
-    	quadro: 1
-    },
-    {
-    	nome: "Marcelo",
-    	gols: 6,
-    	quadro: 2
-    },
-    {
-    	nome: "Danilo",
-    	gols: 4,
-    	quadro: 2
-    },
-    {
-    	nome: "Leandrão",
-    	gols: 4,
-    	quadro: 2
-    },
-    {
-    	nome: "Rafael",
-    	gols: 3,
-    	quadro: 2
-    },
-    {
-    	nome: "Alcymar",
-    	gols: 0,
-    	quadro: 1
-    },
-    {
-    	nome: "Luciano",
-    	gols: 0,
-    	quadro: 2
-    },
-    {
-    	nome: "Danilo Nil",
-    	gols: 0,
-    	quadro: 2
-    },
-    {
-    	nome: "Leandro",
-    	gols: 0,
-    	quadro: 1
-    }
-];
-
-var ordenaArtilharia = function(a, b) {
-	return b.gols - a.gols;
-}
-
-$(document).ready(function(){
-	ultimosJogos(6, ".destaques .ultimos-jogos h2");
-	ultimosJogos(100, ".estatisticas .ultimos-jogos h2");
-
-	montaArtilharia(".estatisticas .artilheiros-quadro-1", 1);
-	montaArtilharia(".estatisticas .artilheiros-quadro-2", 2);
-
-	$(".artilharia-item-quadro-1:last").addClass("last");
-	$(".artilharia-item-quadro-2:last").addClass("last");
-
-	menuEvents();
-});

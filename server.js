@@ -13,12 +13,9 @@ MongoClient.connect(
 		function(err, db) {
 	mongo = db;
 
-console.log(mongo);
   if(!err) {
     console.log("We are connected in mongodb :)");
-  } else {
-	console.log(err);
-}
+  }
 });
 
 app.use(express.bodyParser());
@@ -98,6 +95,8 @@ app.post('/news/:id', function(request, response) {
 		news.text = request.body.text;
 		news.author = request.body.author;
 
+		console.log(ObjectId(news._id));
+
 		collection.update({ _id : ObjectId(news._id) }, { $set: news }, function( err, result ) {
 		        if(!err) {
 							console.log("News Updated!", result.ops);
@@ -111,6 +110,30 @@ app.post('/news/:id', function(request, response) {
 	}
 });
 // Crud news update: end
+
+// Crud news list all: start
+app.get('/news', function(request, response) {
+		var collection = mongo.collection('news');
+
+		news._id = request.params.id;
+		news.title = request.body.title;
+		news.text = request.body.text;
+		news.author = request.body.author;
+
+		console.log(ObjectId(news._id));
+
+		collection.update({ _id : ObjectId(news._id) }, { $set: news }, function( err, result ) {
+		        if(!err) {
+							console.log("News Updated!", result.ops);
+
+							response.json(result);
+						}
+
+						response.end();
+		    }
+		);
+});
+// Crud news list all: end
 
 var server = app.listen(port, function() {
 	var host = server.address().address;
