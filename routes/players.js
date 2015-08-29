@@ -109,11 +109,29 @@ module.exports = function(app) {
   
   // Crud players list all: start
   app.get('/players', function(request, response) {
-  		var collection = global.mongo.collection('player');
+  		var collection = global.mongo.collection('player'), players = [], count = 0;
       
-      collection.find().sort({ name: 1 }).toArray(function(error, data) {
-        response.json(data);
+      redis.getAll("player:*", function(error, rows) {
+        getRecursivePlayers(rows, function() {
+          response.json(players);
+        });
       });
+
+      var getRecursivePlayers = function(rows, callbackFinal) {
+        redis.get(rows[count], function(data) {
+          if(data) {
+            players.push(data);
+          }
+
+          count++;
+
+          if(count < rows.length) {
+            getRecursivePlayers(rows, callbackFinal);
+          } else {
+            callbackFinal();
+          }
+        });
+      };
   });
   // Crud players list all: end
   

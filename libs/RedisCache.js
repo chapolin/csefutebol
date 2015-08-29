@@ -41,3 +41,7 @@ RedisCache.prototype.get = function(key, callback) {
 RedisCache.prototype.remove = function(key) {
   this.conn.del(key);
 };
+
+RedisCache.prototype.getAll = function(key, callback) {
+  this.conn.keys(key, callback);
+};
