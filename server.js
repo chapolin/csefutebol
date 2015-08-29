@@ -4,7 +4,8 @@ mongodb = require('mongodb'), MongoClient = mongodb.MongoClient,
 methodOverride = require('method-override'), 
 Redis = require("./libs/RedisCache").RedisCache,
 routesPath = path.join(__dirname, "routes"), develop = false, 
-STRING_CONNECTION = "mongodb://cse:csesenha@ds053448.mongolab.com:53448/heroku_xwm5hgrr";
+STRING_CONNECTION = "mongodb://cse:csesenha@ds053448.mongolab.com:53448/heroku_xwm5hgrr",
+redisProperties = null;
 
 if(develop) {
 	STRING_CONNECTION = "mongodb://localhost:27017";
@@ -21,7 +22,15 @@ MongoClient.connect(STRING_CONNECTION, function(err, db) {
 });
 
 // Connection to Redis
-Redis();
+if(!develop) {
+	redisProperties = {
+		port: 9439,
+		host: 'ec2-54-83-207-141.compute-1.amazonaws.com',
+		password: 'pdsndqjcco47crfd8c5rpi8749k'
+	};
+}
+
+Redis(redisProperties);
 
 app.use(express.bodyParser());
 app.use(methodOverride('X-HTTP-Method-Override'));
