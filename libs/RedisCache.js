@@ -45,3 +45,11 @@ RedisCache.prototype.remove = function(key) {
 RedisCache.prototype.getAll = function(key, callback) {
   this.conn.keys(key, callback);
 };
+
+RedisCache.prototype.on = function (message, callback) {
+  this.conn.on(message, callback);
+};
+
+RedisCache.prototype.publish = function (channel, message) {
+  this.conn.publish(channel, message);
+};

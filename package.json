@@ -10,6 +10,7 @@
     "ejs": "^2.3.3",
     "express": "^3.2.6",
     "ioredis": "^1.7.5",
+    "lodash": "^3.10.1",
     "method-override": "^2.3.5",
     "mongodb": "^2.0.39"
   },

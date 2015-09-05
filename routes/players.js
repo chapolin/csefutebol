@@ -1,29 +1,23 @@
-var Redis = require("../libs/RedisCache").RedisCache, 
-    redis = new Redis(), TTL_FIVE_MINUTES = 300;
+var Redis = require("../libs/RedisCache").RedisCache, redis = new Redis(), 
+    PlayerRepository = require("../repository/Player").PlayerRepository, 
+    Util = require("../libs/Util").Util;
 
 module.exports = function(app) {
+  var repository = new PlayerRepository();
+
   // Crud players insert: start
   app.post('/player', function(request, response) {
-    if(fieldIsValid(request, "name")) {
-  		var player = {}, collection = mongo.collection('player');
+    if(Util.fieldIsValid(request, "name")) {
+  		var player = {};
 
   		player.name = request.body.name;
   		player.position = request.body.position ? request.body.position : null;
   		player.score = request.body.score ? request.body.score : null;
       player.image = request.body.image ? request.body.image : null;
 
-  		collection.insert(player, {w:1}, function(error, data) {
-  				if(!error) {
-  					console.log("Player inserted!");
-            
-            // Saving Redis
-            redis.put("player:" + data.ops[0]._id, player);
-
-  					response.json(data);
-  				}
-
-  				response.end();
-  		});
+      repository.insert(player, function(data) {
+        response.json(data);
+      });
   	} else {
       response.json({error: "invalid data!"});
     }
@@ -34,40 +28,30 @@ module.exports = function(app) {
   
   // Crud players update: start
   app.put('/player/:id', function(request, response) {
-    if(fieldIsValid(request, "name") || fieldIsValid(request, "position") || 
-      fieldIsValid(request, "score") || fieldIsValid(request, "image")) {
+    if(Util.fieldIsValid(request, "name") || Util.fieldIsValid(request, "position") || 
+      Util.fieldIsValid(request, "score") || Util.fieldIsValid(request, "image")) {
   		var collection = mongo.collection('player'), player = {}, 
           id = request.params.id;
 
-      if(fieldIsValid(request, "name")) {
+      if(Util.fieldIsValid(request, "name")) {
         player.name = request.body.name;  
       }
       
-      if(fieldIsValid(request, "position")) {
+      if(Util.fieldIsValid(request, "position")) {
         player.position = request.body.position;
       }
       
-      if(fieldIsValid(request, "score")) {
+      if(Util.fieldIsValid(request, "score")) {
         player.score = request.body.score;  
       }
   		
-  		if(fieldIsValid(request, "image")) {
+  		if(Util.fieldIsValid(request, "image")) {
         player.image = request.body.image;
       }
       
-  		collection.update({_id: global.mongodb.ObjectID(id)}, 
-        { $set: player }, {w:1}, function(error, data) {
-  				if(!error) {
-  					console.log("Player updated!");
-
-            // Updating Redis
-            redis.put("player:" + id, player);
-
-  					response.json(data);
-  				}
-
-  				response.end();
-  		});
+  		repository.update(id, player, function(data) {
+        response.json(data);
+      });
   	} else {
       response.json({error: "invalid data!"});
     }
@@ -76,40 +60,23 @@ module.exports = function(app) {
   
   // Crud players get one: start
   app.get('/player/:id', function(request, response) {
-    var id = request.params.id;
-    
-    redis.get("player:" + id, function(data) {
-      if(!data.hasOwnProperty("_id")) {
-        var collection = global.mongo.collection('player');
-
-        collection.findOne({ _id: global.mongodb.ObjectID(id) }, function(error, data) {
-          if(!error) {
-            var key = "player:" + id;
-            
-            if(data) {
-              // Saving Redis
-              redis.put(key, data);
-            } else {
-              data = {_id: -1};
-              // Saving Redis
-              redis.put(key, data, TTL_FIVE_MINUTES);
-            }
-              
-            response.json(data);
-          }
-          
-          response.end();
-        });  
-      } else {
-        response.json(data);
-      }
+    repository.get(request.params.id, function(data) {
+      response.json(data);
     });
   });
   // Crud players get one: end
   
+  // Crud players delete: start
+  app.delete('/player/:id', function(request, response) {
+    repository.delete(request.params.id, function(data) {
+      response.json(data);
+    });
+  });
+  // Crud players delete: end
+  
   // Crud players list all: start
   app.get('/players', function(request, response) {
-  		var collection = global.mongo.collection('player'), players = [], count = 0;
+      var collection = global.mongo.collection('player'), players = [], count = 0;
       
       redis.getAll("player:*", function(error, rows) {
         getRecursivePlayers(rows, function() {
@@ -134,32 +101,4 @@ module.exports = function(app) {
       };
   });
   // Crud players list all: end
-  
-  // Crud players delete: start
-  app.delete('/player/:id', function(request, response) {
-  		var collection = global.mongo.collection('player'), 
-          id = request.params.id;
-      
-      collection.remove({_id: global.mongodb.ObjectID(id)}, function(error, data) {
-        if(!error) {
-          console.log("Player removed!");
-          
-          // Removing Redis
-          redis.remove("player:" + id);
-          
-          response.json(data);
-        }
-        
-        response.end();
-      });
-  });
-  // Crud players delete: end
-};
-
-var fieldIsValid = function(request, fielName) {
-	if(request.body.hasOwnProperty(fielName) && request.body[fielName]) {
-		return true;
-	}
-	
-	return false;
 };
