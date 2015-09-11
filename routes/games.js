@@ -53,5 +53,21 @@
         };
     });
     // Crud players list all: end
+
+      // Crud players get one: start
+    app.get('/game/:id', function(request, response) {
+      repository.get(request.params.id, function(data) {
+        response.json(data);
+      });
+    });
+    // Crud players get one: end
+    
+    // Crud players delete: start
+    app.delete('/game/:id', function(request, response) {
+      repository.delete(request.params.id, function(data) {
+        response.json(data);
+      });
+    });
+    // Crud players delete: end
   };
 })();
