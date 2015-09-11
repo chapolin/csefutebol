@@ -40,7 +40,7 @@
     
     collection.insert(value, {w:1}, function(error, data) {
         if(!error) {
-          console.log("Player inserted!");
+          console.log("%s inserted!", self.getCollection());
         
           var key = self.getKey() + self.getSeparator() + data.ops[0]._id;
           
@@ -54,7 +54,7 @@
   
   Repository.prototype.update = function(key, value, callback) {
     var collection = mongo.collection(this.getCollection()), 
-        keyRedis = this.getKey() + this.getSeparator() + key;
+        keyRedis = this.getKey() + this.getSeparator() + key, self = this;
     
     this.get(key, function(dataToUpdate) {
       if(dataToUpdate) {
@@ -63,7 +63,7 @@
         collection.update({_id: global.mongodb.ObjectID(key)}, 
           { $set: value }, {w:1}, function(error, data) {
             if(!error) {
-              console.log("Player updated!");
+              console.log("%s updated!", self.getCollection());
 
               // Saving in redis
               redis.put(keyRedis, dataToUpdate);
@@ -78,14 +78,15 @@
   };
   
   Repository.prototype.delete = function(key, callback) {
-    var collection = global.mongo.collection(this.getCollection());
+    var collection = global.mongo.collection(this.getCollection()), self = this,
+        keyRedis = this.getKey() + this.getSeparator() + key;
     
     collection.remove({_id: global.mongodb.ObjectID(key)}, function(error, data) {
       if(!error) {
-        console.log("Player removed!");
+        console.log("%s removed!", self.getCollection());
         
         // Removing Redis
-        redis.remove("player:" + key);
+        redis.remove(keyRedis);
       }
       
       callback(data);
