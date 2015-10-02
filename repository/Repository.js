@@ -2,7 +2,7 @@
   "use strict";
   
   var Redis = require("../libs/RedisCache").RedisCache, _ = require("lodash"), 
-      redis = new Redis(), TTL_FIVE_MINUTES = 300;
+      redis = new Redis(), TTL_FIVE_MINUTES = -1;
 
   var Repository = exports.Repository = function () {};
   
