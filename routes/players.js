@@ -86,7 +86,7 @@ module.exports = function(app) {
         });
       });
 
-      var byName = function(a,b) {
+      var byName = function(a, b) {
         var x = a.name.toLowerCase();
         var y = b.name.toLowerCase();
 

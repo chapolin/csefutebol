@@ -14,6 +14,7 @@
     		game.players = request.body.players;
     		game.place = request.body.place ? request.body.place : null;
     		game.date = request.body.date ? request.body.date : null;
+        game.time = request.body.time ? request.body.time : null;
         game.versus = request.body.versus ? request.body.versus : null;
         game.friendly = request.body.friendly ? request.body.friendly : null;
 
@@ -32,9 +33,18 @@
         
         redis.getAll("game:*", function(error, rows) {
           getRecursivePlayers(rows, function() {
+            games.sort(byDate);
+
             response.json(games);
           });
         });
+
+        var byDate = function(a, b) {
+          var x = a.date;
+          var y = b.date;
+
+          return x < y ? -1 : x > y ? 1 : 0;
+        };
 
         var getRecursivePlayers = function(rows, callbackFinal) {
           redis.get(rows[count], function(data) {
