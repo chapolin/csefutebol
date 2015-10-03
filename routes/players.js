@@ -80,9 +80,18 @@ module.exports = function(app) {
       
       redis.getAll("player:*", function(error, rows) {
         getRecursivePlayers(rows, function() {
+          players.sort(byName);
+
           response.json(players);
         });
       });
+
+      var byName = function(a,b) {
+        var x = a.name.toLowerCase();
+        var y = b.name.toLowerCase();
+
+        return x < y ? -1 : x > y ? 1 : 0;
+      };
 
       var getRecursivePlayers = function(rows, callbackFinal) {
         redis.get(rows[count], function(data) {
