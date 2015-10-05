@@ -7,7 +7,7 @@ module.exports = function(app) {
 
   // Crud players insert: start
   app.post('/player', function(request, response) {
-    if(Util.fieldIsValid(request, "name")) {
+    if(Util.findAttribute(request.body, "name")) {
   		var player = {};
 
   		player.name = request.body.name;
@@ -28,24 +28,24 @@ module.exports = function(app) {
   
   // Crud players update: start
   app.put('/player/:id', function(request, response) {
-    if(Util.fieldIsValid(request, "name") || Util.fieldIsValid(request, "position") || 
-      Util.fieldIsValid(request, "score") || Util.fieldIsValid(request, "image")) {
+    if(Util.findAttribute(request.body, "name") || Util.findAttribute(request.body, "position") || 
+      Util.findAttribute(request.body, "score") || Util.findAttribute(request.body, "image")) {
   		var collection = mongo.collection('player'), player = {}, 
           id = request.params.id;
 
-      if(Util.fieldIsValid(request, "name")) {
+      if(Util.findAttribute(request.body, "name")) {
         player.name = request.body.name;  
       }
       
-      if(Util.fieldIsValid(request, "position")) {
+      if(Util.findAttribute(request.body, "position")) {
         player.position = request.body.position;
       }
       
-      if(Util.fieldIsValid(request, "score")) {
+      if(Util.findAttribute(request.body, "score")) {
         player.score = request.body.score;  
       }
   		
-  		if(Util.fieldIsValid(request, "image")) {
+  		if(Util.findAttribute(request.body, "image")) {
         player.image = request.body.image;
       }
       

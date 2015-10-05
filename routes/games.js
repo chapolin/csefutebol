@@ -8,7 +8,7 @@
 
     // Crud games insert: start
     app.post('/game', function(request, response) {
-      if(Util.fieldIsValid(request, "players")) {
+      if(Util.findAttribute(request.body, "players")) {
     		var game = {};
 
     		game.players = request.body.players;
