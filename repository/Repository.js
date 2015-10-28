@@ -2,7 +2,7 @@
   "use strict";
   
   var Redis = require("../libs/RedisCache").RedisCache, _ = require("lodash"), 
-      redis = new Redis();
+      redis = new Redis(), TTL_FIVE_MINUTES = 300;
 
   var Repository = exports.Repository = function () {};
   
@@ -24,7 +24,7 @@
           } else {
             data = {_id: -1, origin: "mongodb", msg: "not found"};
             // Saving Redis
-            redis.put(key, data);
+            redis.put(key, data, TTL_FIVE_MINUTES);
           }
           
           callback(data);

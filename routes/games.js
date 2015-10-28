@@ -48,7 +48,7 @@
 
         var getRecursivePlayers = function(rows, callbackFinal) {
           redis.get(rows[count], function(data) {
-            if(data) {
+            if(data && data._id !== -1) {
               games.push(data);
             }
 
