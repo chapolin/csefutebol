@@ -2,7 +2,7 @@
   "use strict";
   
   var Redis = require("../libs/RedisCache").RedisCache, _ = require("lodash"), 
-      redis = new Redis(), TTL_INFINITY = -1;
+      redis = new Redis();
 
   var Repository = exports.Repository = function () {};
   
@@ -20,7 +20,7 @@
             data = {error: error, origin: "mongodb"};
           } else if(data) {
             // Saving Redis
-            redis.put(key, data, TTL_INFINITY);
+            redis.put(key, data);
           } else {
             data = {_id: -1, origin: "mongodb", msg: "not found"};
             // Saving Redis
@@ -45,7 +45,7 @@
           var key = self.getKey() + self.getSeparator() + data.ops[0]._id;
           
           // Saving in redis
-          redis.put(key, value, TTL_INFINITY);
+          redis.put(key, value);
         }
         
         callback(data);
@@ -66,7 +66,7 @@
               console.log("%s updated!", self.getCollection());
 
               // Saving in redis
-              redis.put(keyRedis, dataToUpdate, TTL_INFINITY);
+              redis.put(keyRedis, dataToUpdate);
             }
 
             callback(data);

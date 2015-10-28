@@ -3,7 +3,8 @@ app = express(), port = process.env.PORT || 3000, mongo = null,
 mongodb = require('mongodb'), MongoClient = mongodb.MongoClient, 
 methodOverride = require('method-override'), 
 Redis = require("./libs/RedisCache").RedisCache,
-routesPath = path.join(__dirname, "routes"), develop = false, 
+routesPath = path.join(__dirname, "routes"), 
+develop = process.argv[2] === "developer", 
 STRING_CONNECTION = "mongodb://cse:csesenha@ds053448.mongolab.com:53448/heroku_xwm5hgrr",
 redisProperties = null;
 

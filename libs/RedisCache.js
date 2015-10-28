@@ -1,4 +1,4 @@
-var redisConnection = null, Redis = require("ioredis"), TTL_ONE_WEEK = 604800;
+var redisConnection = null, Redis = require("ioredis");
 
 var RedisCache = exports.RedisCache = function (properties) {
   if(!redisConnection) {
@@ -22,10 +22,12 @@ var RedisCache = exports.RedisCache = function (properties) {
 
 RedisCache.prototype.put = function(key, value, ttl) {
   if(!ttl) {
-    ttl = TTL_ONE_WEEK;
+    this.conn.set(key, JSON.stringify(value));
+  } else {
+    this.conn.setex(key, ttl, JSON.stringify(value));
   }
   
-  this.conn.setex(key, ttl, JSON.stringify(value));
+  
 };
 
 RedisCache.prototype.get = function(key, callback) {
